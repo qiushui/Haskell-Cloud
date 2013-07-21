@@ -1,0 +1,2 @@
+#!/bin/sh
+exec "${OPENSHIFT_HASKELL_DIR}usr/ghc/bin/ghc" --interactive ${1+"$@"}

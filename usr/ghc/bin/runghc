@@ -1,0 +1,10 @@
+#!/bin/sh
+exedir="${OPENSHIFT_HASKELL_DIR}usr/ghc/lib/ghc-7.6.3"
+exeprog="runghc"
+executablename="$exedir/$exeprog"
+datadir="${OPENSHIFT_HASKELL_DIR}usr/ghc/share"
+bindir="${OPENSHIFT_HASKELL_DIR}usr/ghc/bin"
+topdir="${OPENSHIFT_HASKELL_DIR}usr/ghc/lib/ghc-7.6.3"
+#!/bin/sh
+
+exec "$executablename" -f "$bindir/ghc" ${1+"$@"}

@@ -1,0 +1,12 @@
+#!/bin/sh
+exedir="${OPENSHIFT_HASKELL_DIR}usr/ghc/lib/ghc-7.6.3"
+exeprog="ghc-pkg"
+executablename="$exedir/$exeprog"
+datadir="${OPENSHIFT_HASKELL_DIR}usr/ghc/share"
+bindir="${OPENSHIFT_HASKELL_DIR}usr/ghc/bin"
+topdir="${OPENSHIFT_HASKELL_DIR}usr/ghc/lib/ghc-7.6.3"
+#!/bin/sh
+
+PKGCONF="$topdir/package.conf.d"
+exec "$executablename" --global-package-db "$PKGCONF" ${1+"$@"}
+
