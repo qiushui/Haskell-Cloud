@@ -1,1 +1,39 @@
 #!/bin/bash -eu
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+function start {
+  server $OPENSHIFT_HASKELL_IP $OPENSHIFT_HASKELL_PORT &
+}
+
+function stop {
+  if pid=$(lsof -ti @$OPENSHIFT_HASKELL_IP:$OPENSHIFT_HASKELL_PORT -sTCP:listen); then
+    kill $pid
+    wait_for_stop $pid
+    if ps -p$pid &>/dev/null; then error "The server did not respond to the stop signal." 1; fi
+  else
+    warning "The server is not running, nothing to stop."
+  fi
+}
+
+case "$1" in
+  start)   start
+           ;;
+  stop)    stop
+           ;;
+  restart) stop
+           start
+           ;;
+  tidy)    echo "deleting logs ..."
+           rm -rf $OPENSHIFT_HASKELL_LOG_DIR
+           echo "deleting hackage cache ..."
+           rm -rf ${OPENSHIFT_HASKELL_DIR}cabal/packages/hackage.haskell.org/*/
+           rm -rf ${OPENSHIFT_HASKELL_DIR}cabal/packages/hackage.haskell.org/00-index.tar.gz
+           rm -rf ${OPENSHIFT_HASKELL_DIR}cabal/packages/hackage.haskell.org/build-reports.log
+           echo "emptying working directory ..."
+           rm -rf ${OPENSHIFT_REPO_DIR}*
+           ;;
+  build)   cd $OPENSHIFT_REPO_DIR
+           cabal install
+           ;;
+esac
