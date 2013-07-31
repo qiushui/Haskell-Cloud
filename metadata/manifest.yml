@@ -4,6 +4,8 @@ Display-Name: Haskell
 Version: '7.6.3'
 Cartridge-Version: 0.1
 Cartridge-Vendor: accursoft
+Description: "GHC 7.5.3 and cabal-install 1.16.0.2"
+Website: http://www.haskell.org/
 Install-Build-Required: True
 Categories:
   - haskell
