@@ -2,15 +2,23 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+function pid {
+  lsof -ti @$OPENSHIFT_HASKELL_IP:$OPENSHIFT_HASKELL_PORT -sTCP:listen
+}
+
 function start {
-  server $OPENSHIFT_HASKELL_IP $OPENSHIFT_HASKELL_PORT &
+  if pid &>/dev/null; then
+    warning "The server is already running."
+  else
+    server $OPENSHIFT_HASKELL_IP $OPENSHIFT_HASKELL_PORT &
+  fi
 }
 
 function stop {
-  if pid=$(lsof -ti @$OPENSHIFT_HASKELL_IP:$OPENSHIFT_HASKELL_PORT -sTCP:listen); then
+  if pid=$(pid); then
     kill $pid
     wait_for_stop $pid
-    if ps -p$pid &>/dev/null; then error "The server did not respond to the stop signal." 1; fi
+    if pid; then error "The server did not respond to the stop signal." 1; fi
   else
     warning "The server is not running, nothing to stop."
   fi
