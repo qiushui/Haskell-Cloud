@@ -4,7 +4,6 @@ Display-Name: Haskell
 Version: '7.6.3'
 Cartridge-Version: 0.1
 Cartridge-Vendor: accursoft
-Source-Url: https://github.com/accursoft/Haskell-Cloud.git
 Install-Build-Required: True
 Categories:
   - haskell
