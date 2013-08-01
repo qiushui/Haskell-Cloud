@@ -41,7 +41,16 @@ case "$1" in
            echo "emptying working directory ..."
            rm -rf ${OPENSHIFT_REPO_DIR}*
            ;;
-  build)   cd $OPENSHIFT_REPO_DIR
+  build)   if marker_present force_clean_build; then
+             echo "force_clean_build ..."
+             rm -rf ${OPENSHIFT_HASKELL_DIR}cabal/bin
+             rm -rf ${OPENSHIFT_HASKELL_DIR}cabal/lib
+             rm -rf ${OPENSHIFT_HASKELL_DIR}cabal/share
+             rm -f ${OPENSHIFT_HASKELL_DIR}cabal/world
+             rm -rf $CABAL_PACKAGES
+             ghc-pkg init $CABAL_PACKAGES
+           fi
+           cd $OPENSHIFT_REPO_DIR
            cabal install
            ;;
 esac

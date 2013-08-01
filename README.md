@@ -22,3 +22,7 @@ The logs directory is defined in `$OPENSHIFT_HASKELL_LOG_DIR`. Cabal's build sum
 Tidying
 -------
 OpenShift's `tidy` command will delete all logs, cabal's cache of downloaded packages, and the repository working directory. Installed packages (and binaries) are not deleted.
+
+Markers
+-------
+Markers can be created in `.openshift/markers` to modify the build process. See [README](template/.openshift/markers/README) for details.
