@@ -32,6 +32,10 @@ case "$1" in
   restart) stop
            start
            ;;
+  status)  if ! pid &>/dev/null; then
+             exit 1;
+           fi
+           ;;
   tidy)    echo "deleting logs ..."
            rm -rf $OPENSHIFT_HASKELL_LOG_DIR
            echo "deleting hackage cache ..."
