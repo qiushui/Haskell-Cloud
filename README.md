@@ -7,6 +7,10 @@ Haskell Cloud is an [OpenShift](https://www.openshift.com/) cartridge for deploy
 - cabal-install 1.16.0.2
 - network 2.4.1.2, and its dependencies
 
+OpenShift
+---------
+For a general understanding of the OpenShift environment, consult the [Online](https://access.redhat.com/site/documentation/en-US/OpenShift_Online/2.0/html/User_Guide/) or [Origin](http://openshift.github.io/documentation/oo_user_guide.html) user guides.
+
 Installation
 ------------
 Use the [Cartridge Reflector](http://cartreflect-claytondev.rhcloud.com/) to obtain the cartridge's manifest, e.g. http://cartreflect-claytondev.rhcloud.com/reflect?github=accursoft/Haskell-Cloud. Alternatively, to create a new Haskell application in OpenShift online, just follow [this link](https://openshift.redhat.com/app/console/application_type/custom?cartridges[]=http://cartreflect-claytondev.rhcloud.com/reflect?github=accursoft/Haskell-Cloud).
