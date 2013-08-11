@@ -2,3 +2,4 @@ Create (empty) files in this directory to modify the build process. The followin
 
 force_clean_build: Remove all the packages and executables previously installed by cabal before building.
 cabal_update: Run cabal update before building.
+run_tests: Run cabal test before installing.
